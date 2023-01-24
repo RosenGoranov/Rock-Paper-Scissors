@@ -1,0 +1,66 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class RockPaperScissors {
+
+    private static final String ROCK = "Rock";
+    private static final String PAPER = "Paper";
+    private static final String SCISSORS = "Scissors";
+
+    public static void main(String[] args) {
+
+        System.out.print("Choose [r]ock, Choose[p]aper or Choose[s]cissors:");
+        Scanner scan = new Scanner(System.in);
+        String answer = scan.nextLine();
+
+
+        while (!answer.equals("Stop")) {
+            Random random = new Random();
+            int computerRandom = random.nextInt(3);
+
+            String computerMove = "";
+            switch (computerRandom) {
+                case 0:
+                    computerMove = "Rock";
+                    break;
+                case 1:
+                    computerMove = "Paper";
+                    break;
+                case 2:
+                    computerMove = "Scissors";
+                    break;
+            }
+            System.out.printf("The computer chose %s.%n", computerMove);
+            switch (answer) {
+                case "r" -> {
+                    answer = "Rock";
+                    switch (computerMove) {
+                        case "Scissors" -> System.out.println("You win");
+                        case "Rock" -> System.out.println("Draw");
+                        case "Paper" -> System.out.println("You lose");
+                    }
+                }
+                case "p" -> {
+                    answer = "Paper";
+                    switch (computerMove) {
+                        case "Rock" -> System.out.println("You win");
+                        case "Paper" -> System.out.println("Draw");
+                        case "Scissors" -> System.out.println("You lose");
+                    }
+                }
+                case "s" -> {
+                    answer = "Scissors";
+                    switch (computerMove) {
+                        case "Rock" -> System.out.println("You lose");
+                        case "Paper" -> System.out.println("You win");
+                        case "Scissors" -> System.out.println("Draw");
+                    }
+                }
+            }
+            System.out.print("Choose [r]ock, Choose[p]aper or Choose[s]cissors:");
+            answer = scan.nextLine();
+        }
+
+    }
+
+}
